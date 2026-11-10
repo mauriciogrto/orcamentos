@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Orcamentos - Sistema Comercial Multiempresa</title>
+    <meta name="description" content="Landing page comercial para venda do sistema multiempresa de orcamentos, clientes, pedidos, produtos e comissoes.">
+    <style>
+        :root {
+            --primary: #043873;
+            --primary-2: #0b4f9f;
+            --accent: #4f9cf9;
+            --accent-soft: #e6f1ff;
+            --yellow: #ffe492;
+            --green: #19a974;
+            --red: #dc2626;
+            --ink: #212529;
+            --muted: #4f5f73;
+            --line: #dbe5f1;
+            --paper: #ffffff;
+            --wash: #f7fbff;
+            --radius: 8px;
+            --shadow: 0 22px 55px rgba(4, 56, 115, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1200px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        .button {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            border: 1px solid transparent;
+            padding: 0 22px;
+            font-size: 14px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .button-primary {
+            background: var(--accent);
+            color: #ffffff;
+        }
+
+        .button-primary:hover {
+            background: #2f82e9;
+        }
+
+        .button-light {
+            background: var(--yellow);
+            color: #043873;
+        }
+
+        .button-outline {
+            border-color: rgba(255, 255, 255, 0.32);
+            color: #ffffff;
+        }
+
+        .button-soft {
+            border-color: var(--line);
+            background: #ffffff;
+            color: var(--primary);
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .topbar-inner {
+            display: flex;
+            min-height: 72px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            place-items: center;
+            border-radius: var(--radius);
+            background: #ffffff;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            color: #d8e7f8;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .nav a:hover {
+            color: #ffffff;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .hero::before {
+            position: absolute;
+            inset: 96px 0 auto;
+            height: 260px;
+            content: "";
+            background:
+                repeating-radial-gradient(ellipse at 20% 50%, rgba(255,255,255,0.18) 0 1px, transparent 1px 13px),
+                repeating-radial-gradient(ellipse at 88% 42%, rgba(255,255,255,0.16) 0 1px, transparent 1px 12px);
+            opacity: 0.35;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            min-height: 640px;
+            grid-template-columns: minmax(0, 0.9fr) minmax(520px, 1.1fr);
+            align-items: center;
+            gap: 56px;
+            padding: 76px 0 86px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 7px 12px;
+            color: #d8e7f8;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .eyebrow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--yellow);
+        }
+
+        h1,
+        h2,
+        h3,
+        p {
+            margin-top: 0;
+        }
+
+        h1 {
+            max-width: 650px;
+            margin-bottom: 22px;
+            font-size: clamp(40px, 6vw, 72px);
+            line-height: 1.04;
+            letter-spacing: 0;
+        }
+
+        .mark {
+            position: relative;
+            display: inline-block;
+        }
+
+        .mark::after {
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+            left: 0;
+            z-index: -1;
+            height: 13px;
+            border-radius: 999px;
+            background: var(--yellow);
+            content: "";
+        }
+
+        .lead {
+            max-width: 610px;
+            margin-bottom: 30px;
+            color: #d8e7f8;
+            font-size: 18px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 34px;
+        }
+
+        .trust-row {
+            display: grid;
+            max-width: 650px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .trust-card {
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.08);
+            padding: 14px;
+        }
+
+        .trust-card strong {
+            display: block;
+            font-size: 21px;
+        }
+
+        .trust-card span {
+            display: block;
+            margin-top: 4px;
+            color: #d8e7f8;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .mockup-frame {
+            position: relative;
+        }
+
+        .app-window {
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 14px;
+            background: #f3f6fb;
+            color: var(--ink);
+            box-shadow: var(--shadow);
+        }
+
+        .app-top {
+            display: flex;
+            min-height: 64px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            border-bottom: 1px solid var(--line);
+            background: #ffffff;
+            padding: 0 18px;
+        }
+
+        .app-top .brand {
+            color: var(--ink);
+            font-size: 15px;
+        }
+
+        .app-top .brand-mark {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .app-tabs {
+            display: flex;
+            gap: 18px;
+            color: #6b7280;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .app-tabs .active {
+            color: var(--accent);
+        }
+
+        .app-user {
+            border-radius: 999px;
+            background: #eef2f7;
+            padding: 7px 10px;
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .app-body {
+            padding: 22px;
+        }
+
+        .app-heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .app-heading h2 {
+            margin-bottom: 4px;
+            font-size: 20px;
+        }
+
+        .app-heading p {
+            margin-bottom: 0;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .mini-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .mini-stat {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #ffffff;
+            padding: 13px;
+        }
+
+        .mini-stat span {
+            display: block;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .mini-stat strong {
+            display: block;
+            margin-top: 4px;
+            font-size: 19px;
+        }
+
+        .table-card {
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #ffffff;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr 0.9fr 0.9fr;
+            gap: 12px;
+            align-items: center;
+            min-height: 54px;
+            border-top: 1px solid var(--line);
+            padding: 0 16px;
+            font-size: 13px;
+        }
+
+        .table-row:first-child {
+            border-top: 0;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .pill {
+            display: inline-flex;
+            width: fit-content;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .pill-blue {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .pill-green {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .pill-yellow {
+            background: #fef3c7;
+            color: #a16207;
+        }
+
+        .floating-card {
+            position: absolute;
+            right: -10px;
+            bottom: -34px;
+            width: 260px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: #ffffff;
+            padding: 16px;
+            box-shadow: var(--shadow);
+            color: var(--ink);
+        }
+
+        .floating-card h3 {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .bar-line {
+            display: grid;
+            grid-template-columns: 70px 1fr 34px;
+            gap: 8px;
+            align-items: center;
+            margin-top: 9px;
+            color: #64748b;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .bar-bg {
+            overflow: hidden;
+            height: 8px;
+            border-radius: 999px;
+            background: #e2e8f0;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: var(--accent);
+        }
+
+        .section {
+            padding: 88px 0;
+        }
+
+        .section-blue {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .section-soft {
+            background: var(--wash);
+        }
+
+        .section-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 38px;
+        }
+
+        .section-head h2,
+        .split-copy h2 {
+            max-width: 680px;
+            margin-bottom: 0;
+            font-size: clamp(30px, 4vw, 54px);
+            line-height: 1.12;
+            letter-spacing: 0;
+        }
+
+        .section-head p,
+        .split-copy p {
+            max-width: 460px;
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .section-blue .section-head p,
+        .section-blue .split-copy p {
+            color: #d8e7f8;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .feature-card,
+        .step-card,
+        .role-card,
+        .price-card,
+        details {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #ffffff;
+            padding: 24px;
+        }
+
+        .feature-card h3,
+        .step-card h3,
+        .role-card h3,
+        .price-card h3 {
+            margin: 18px 0 8px;
+            font-size: 19px;
+        }
+
+        .feature-card p,
+        .step-card p,
+        .role-card p,
+        .price-card p,
+        details p {
+            margin-bottom: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .icon {
+            display: grid;
+            width: 44px;
+            height: 44px;
+            place-items: center;
+            border-radius: var(--radius);
+            background: var(--accent-soft);
+            color: var(--primary);
+            font-weight: 900;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 0.88fr 1.12fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .split-panel {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: #ffffff;
+            padding: 22px;
+            box-shadow: 0 18px 45px rgba(4, 56, 115, 0.08);
+        }
+
+        .flow-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .flow-item {
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            gap: 14px;
+            align-items: start;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: #ffffff;
+            padding: 16px;
+        }
+
+        .flow-number {
+            display: grid;
+            width: 44px;
+            height: 44px;
+            place-items: center;
+            border-radius: var(--radius);
+            background: var(--primary);
+            color: #ffffff;
+            font-weight: 900;
+        }
+
+        .flow-item h3 {
+            margin: 0 0 5px;
+            font-size: 17px;
+        }
+
+        .flow-item p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .role-grid,
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .role-card ul,
+        .price-card ul {
+            display: grid;
+            gap: 8px;
+            margin: 16px 0 0;
+            padding: 0;
+            list-style: none;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .role-card li,
+        .price-card li {
+            display: flex;
+            gap: 8px;
+        }
+
+        .check {
+            color: var(--green);
+            font-weight: 900;
+        }
+
+        .price-card {
+            display: flex;
+            min-height: 100%;
+            flex-direction: column;
+        }
+
+        .price-card.featured {
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+        }
+
+        .price {
+            margin: 14px 0 4px;
+            color: var(--primary);
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: 0;
+        }
+
+        .price-note {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .price-card .button {
+            margin-top: auto;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 36px;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        summary {
+            cursor: pointer;
+            color: var(--ink);
+            font-weight: 900;
+        }
+
+        details p {
+            margin-top: 12px;
+        }
+
+        .cta {
+            overflow: hidden;
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        .cta-inner {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 32px;
+            align-items: center;
+            padding: 68px 0;
+        }
+
+        .cta h2 {
+            max-width: 720px;
+            margin-bottom: 12px;
+            font-size: clamp(30px, 4.4vw, 56px);
+            line-height: 1.12;
+            letter-spacing: 0;
+        }
+
+        .cta p {
+            max-width: 680px;
+            margin-bottom: 0;
+            color: #d8e7f8;
+        }
+
+        .footer {
+            background: #031d3d;
+            color: #d8e7f8;
+            padding: 24px 0;
+            font-size: 13px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        @media (max-width: 1040px) {
+            .nav {
+                display: none;
+            }
+
+            .hero-grid,
+            .split,
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mockup-frame {
+                max-width: 780px;
+            }
+
+            .floating-card {
+                right: 18px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .container {
+                width: min(100% - 24px, 1200px);
+            }
+
+            .topbar-inner {
+                min-height: auto;
+                padding: 12px 0;
+            }
+
+            .nav-actions .button-light {
+                display: none;
+            }
+
+            .brand {
+                font-size: 17px;
+            }
+
+            .hero-grid {
+                min-height: auto;
+                padding: 48px 0 58px;
+            }
+
+            .hero-actions,
+            .trust-row,
+            .mini-stats,
+            .feature-grid,
+            .role-grid,
+            .price-grid,
+            .cta-inner,
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions,
+            .footer-inner {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .app-top {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 14px;
+            }
+
+            .app-tabs {
+                flex-wrap: wrap;
+            }
+
+            .app-heading,
+            .section-head {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .table-row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                padding: 12px;
+            }
+
+            .table-row:first-child {
+                display: none;
+            }
+
+            .floating-card {
+                position: static;
+                width: auto;
+                margin-top: 12px;
+            }
+
+            .section {
+                padding: 58px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="container topbar-inner">
+            <a class="brand" href="#" aria-label="Orcamentos">
+                <span class="brand-mark">OR</span>
+                <span>Orcamentos</span>
+            </a>
+
+            <nav class="nav" aria-label="Navegacao principal">
+                <a href="#recursos">Recursos</a>
+                <a href="#fluxo">Fluxo</a>
+                <a href="#perfis">Perfis</a>
+                <a href="#planos">Planos</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a class="button button-light" href="#contato">Login</a>
+                <a class="button button-primary" href="#contato">Ver demonstracao</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-grid">
+                <div>
+                    <span class="eyebrow"><span class="eyebrow-dot"></span>Software comercial para empresas e representantes</span>
+                    <h1>Venda com propostas <span class="mark">mais rapidas</span>, organizadas e profissionais.</h1>
+                    <p class="lead">
+                        O sistema centraliza clientes, itens, orcamentos, pedidos, comissoes e usuarios em uma plataforma multiempresa feita para equipes que precisam sair da planilha e ganhar controle.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#contato">Solicitar apresentacao</a>
+                        <a class="button button-outline" href="#recursos">Conhecer funcionalidades</a>
+                    </div>
+
+                    <div class="trust-row">
+                        <div class="trust-card">
+                            <strong>ORC-2026</strong>
+                            <span>numeracao automatica por empresa</span>
+                        </div>
+                        <div class="trust-card">
+                            <strong>PDF</strong>
+                            <span>proposta pronta para o cliente</span>
+                        </div>
+                        <div class="trust-card">
+                            <strong>Multiempresa</strong>
+                            <span>modulos e dados separados</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mockup-frame" aria-label="Previa do sistema">
+                    <div class="app-window">
+                        <div class="app-top">
+                            <a href="#" class="brand">
+                                <span class="brand-mark">OR</span>
+                                <span>Orcamentos</span>
+                            </a>
+                            <div class="app-tabs">
+                                <span>Dashboard</span>
+                                <span>Clientes</span>
+                                <span>Itens</span>
+                                <span class="active">Orcamentos</span>
+                                <span>Pedidos</span>
+                            </div>
+                            <span class="app-user">Admin</span>
+                        </div>
+
+                        <div class="app-body">
+                            <div class="app-heading">
+                                <div>
+                                    <h2>Panorama geral da empresa</h2>
+                                    <p>Orcamentos abertos consideram rascunhos e enviados.</p>
+                                </div>
+                                <a class="button button-primary" href="#contato">Novo orcamento</a>
+                            </div>
+
+                            <div class="mini-stats">
+                                <div class="mini-stat"><span>Clientes</span><strong>128</strong></div>
+                                <div class="mini-stat"><span>Abertos</span><strong>54</strong></div>
+                                <div class="mini-stat"><span>Valor aberto</span><strong>R$ 148k</strong></div>
+                                <div class="mini-stat"><span>Pedidos</span><strong>21</strong></div>
+                            </div>
+
+                            <div class="table-card">
+                                <div class="table-row">
+                                    <span>Cliente</span>
+                                    <span>Status</span>
+                                    <span>Responsavel</span>
+                                    <span>Valor</span>
+                                </div>
+                                <div class="table-row">
+                                    <strong>Industria Alfa Ltda.</strong>
+                                    <span class="pill pill-green">Enviado</span>
+                                    <span>Marina Costa</span>
+                                    <strong>R$ 48.920,00</strong>
+                                </div>
+                                <div class="table-row">
+                                    <strong>Comercial Norte</strong>
+                                    <span class="pill pill-blue">Aprovado</span>
+                                    <span>Rafael Dias</span>
+                                    <strong>R$ 32.400,00</strong>
+                                </div>
+                                <div class="table-row">
+                                    <strong>Grupo Solaris</strong>
+                                    <span class="pill pill-yellow">Rascunho</span>
+                                    <span>Juliana Prado</span>
+                                    <strong>R$ 17.860,00</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <aside class="floating-card" aria-label="Resumo de comissoes">
+                        <h3>Comissoes do mes</h3>
+                        <div class="bar-line"><span>Marina</span><span class="bar-bg"><span class="bar-fill" style="width: 86%"></span></span><strong>86%</strong></div>
+                        <div class="bar-line"><span>Rafael</span><span class="bar-bg"><span class="bar-fill" style="width: 72%"></span></span><strong>72%</strong></div>
+                        <div class="bar-line"><span>Equipe</span><span class="bar-bg"><span class="bar-fill" style="width: 91%"></span></span><strong>91%</strong></div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="recursos">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Uma operacao comercial inteira em um unico lugar.</h2>
+                    <p>Da empresa ao vendedor, cada tela foi pensada para reduzir retrabalho, padronizar propostas e dar visibilidade ao gestor.</p>
+                </div>
+
+                <div class="feature-grid">
+                    <article class="feature-card">
+                        <span class="icon">01</span>
+                        <h3>Clientes organizados</h3>
+                        <p>Cadastro por empresa com dados comerciais, contato, CNPJ e vinculo com o vendedor responsavel.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="icon">02</span>
+                        <h3>Produtos e tabelas</h3>
+                        <p>Itens com preco atual, numero de serie, tipo de venda, tributacao e historico de alteracoes.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="icon">03</span>
+                        <h3>Orcamentos completos</h3>
+                        <p>Propostas com itens, descontos, impostos, frete, forma de pagamento, validade e observacoes.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="icon">04</span>
+                        <h3>PDF comercial</h3>
+                        <p>Documento padronizado para apresentar ao cliente e reforcar uma imagem profissional.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="icon">05</span>
+                        <h3>Pedidos integrados</h3>
+                        <p>Converta orcamentos aprovados em pedidos sem redigitar informacoes ou perder historico.</p>
+                    </article>
+                    <article class="feature-card">
+                        <span class="icon">06</span>
+                        <h3>Comissoes por regra</h3>
+                        <p>Configure faixas de desconto, frete e relatorios para acompanhar desempenho comercial.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-soft" id="fluxo">
+            <div class="container split">
+                <div class="split-copy">
+                    <h2>Fluxo simples para vender, aprovar e acompanhar.</h2>
+                    <p>O vendedor cria a proposta, o gestor acompanha o panorama, e o orcamento aprovado vira pedido com o historico preservado.</p>
+                </div>
+
+                <div class="flow-list">
+                    <div class="flow-item">
+                        <span class="flow-number">1</span>
+                        <div>
+                            <h3>Superadmin prepara a empresa</h3>
+                            <p>Cadastra a empresa, ativa o modulo de orcamentos e cria os usuarios.</p>
+                        </div>
+                    </div>
+                    <div class="flow-item">
+                        <span class="flow-number">2</span>
+                        <div>
+                            <h3>Gerente configura a operacao</h3>
+                            <p>Registra itens, tabelas, tributacao, frete e faixas de comissao.</p>
+                        </div>
+                    </div>
+                    <div class="flow-item">
+                        <span class="flow-number">3</span>
+                        <div>
+                            <h3>Equipe cria orcamentos</h3>
+                            <p>Seleciona cliente, adiciona itens, aplica desconto e gera uma proposta pronta para envio.</p>
+                        </div>
+                    </div>
+                    <div class="flow-item">
+                        <span class="flow-number">4</span>
+                        <div>
+                            <h3>Aprovou, virou pedido</h3>
+                            <p>O sistema fecha o fluxo comercial e facilita o acompanhamento de pedidos gerados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-blue">
+            <div class="container split">
+                <div class="split-panel">
+                    <div class="app-heading">
+                        <div>
+                            <h2>Orcamento ORC-2026-001</h2>
+                            <p>Resumo da proposta para aprovacao</p>
+                        </div>
+                        <span class="pill pill-blue">Enviado</span>
+                    </div>
+                    <div class="table-card">
+                        <div class="table-row">
+                            <span>Item</span>
+                            <span>Qtd.</span>
+                            <span>Desconto</span>
+                            <span>Total</span>
+                        </div>
+                        <div class="table-row">
+                            <strong>Equipamento Premium</strong>
+                            <span>4</span>
+                            <span>8%</span>
+                            <strong>R$ 18.400,00</strong>
+                        </div>
+                        <div class="table-row">
+                            <strong>Kit de instalacao</strong>
+                            <span>8</span>
+                            <span>5%</span>
+                            <strong>R$ 30.520,00</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="split-copy">
+                    <h2>Proposta detalhada, com totalizadores e regras do negocio.</h2>
+                    <p>O sistema calcula subtotal, desconto efetivo, impostos, total da proposta e comissao quando o perfil tem permissao para visualizar.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="perfis">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Perfis de acesso para vender com controle.</h2>
+                    <p>Cada usuario acessa as telas certas para sua funcao, mantendo dados comerciais protegidos e organizados.</p>
+                </div>
+
+                <div class="role-grid">
+                    <article class="role-card">
+                        <span class="icon">SA</span>
+                        <h3>Superadmin</h3>
+                        <p>Opera acima das empresas e controla a estrutura multiempresa.</p>
+                        <ul>
+                            <li><span class="check">✓</span>Cadastro de empresas</li>
+                            <li><span class="check">✓</span>Ativacao de modulos</li>
+                            <li><span class="check">✓</span>Gestao de usuarios</li>
+                        </ul>
+                    </article>
+                    <article class="role-card">
+                        <span class="icon">GE</span>
+                        <h3>Gerente ou supervisor</h3>
+                        <p>Acompanha a operacao comercial e organiza configuracoes da empresa.</p>
+                        <ul>
+                            <li><span class="check">✓</span>Panorama de vendedores</li>
+                            <li><span class="check">✓</span>Clientes e orcamentos</li>
+                            <li><span class="check">✓</span>Relatorios de comissao</li>
+                        </ul>
+                    </article>
+                    <article class="role-card">
+                        <span class="icon">VE</span>
+                        <h3>Vendedor</h3>
+                        <p>Cria clientes e propostas sem acessar informacoes restritas da empresa.</p>
+                        <ul>
+                            <li><span class="check">✓</span>Carteira propria</li>
+                            <li><span class="check">✓</span>Novos orcamentos</li>
+                            <li><span class="check">✓</span>PDF e acompanhamento</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-soft" id="planos">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Argumentos comerciais prontos para apresentar.</h2>
+                    <p>Use os planos como ponto de partida para vender o sistema conforme o porte do cliente.</p>
+                </div>
+
+                <div class="price-grid">
+                    <article class="price-card">
+                        <h3>Essencial</h3>
+                        <p>Para equipes que precisam abandonar planilhas e padronizar propostas.</p>
+                        <div class="price">R$ 149</div>
+                        <span class="price-note">mensal, valor exemplo</span>
+                        <ul>
+                            <li><span class="check">✓</span>Clientes e produtos</li>
+                            <li><span class="check">✓</span>Orcamentos com PDF</li>
+                            <li><span class="check">✓</span>Usuarios vendedores</li>
+                        </ul>
+                        <a class="button button-soft" href="#contato">Falar sobre o plano</a>
+                    </article>
+
+                    <article class="price-card featured">
+                        <h3>Profissional</h3>
+                        <p>Para empresas que querem visao de equipe e controle de pedidos.</p>
+                        <div class="price">R$ 249</div>
+                        <span class="price-note">mensal, valor exemplo</span>
+                        <ul>
+                            <li><span class="check">✓</span>Tudo do Essencial</li>
+                            <li><span class="check">✓</span>Pedidos e status</li>
+                            <li><span class="check">✓</span>Comissoes configuraveis</li>
+                            <li><span class="check">✓</span>Panorama por vendedor</li>
+                        </ul>
+                        <a class="button button-primary" href="#contato">Solicitar demonstracao</a>
+                    </article>
+
+                    <article class="price-card">
+                        <h3>Multiempresa</h3>
+                        <p>Para operacao com varias empresas cliente ou modelo de revenda.</p>
+                        <div class="price">Sob consulta</div>
+                        <span class="price-note">implantacao personalizada</span>
+                        <ul>
+                            <li><span class="check">✓</span>Painel superadmin</li>
+                            <li><span class="check">✓</span>Modulos por empresa</li>
+                            <li><span class="check">✓</span>Separacao de dados</li>
+                        </ul>
+                        <a class="button button-soft" href="#contato">Montar proposta</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="faq">
+            <div class="container faq-grid">
+                <div class="split-copy">
+                    <h2>Duvidas que ajudam na venda.</h2>
+                    <p>Respostas simples para apresentar o sistema ao cliente e mostrar o ganho operacional rapidamente.</p>
+                </div>
+
+                <div class="faq-list">
+                    <details open>
+                        <summary>O sistema substitui planilhas de orcamento?</summary>
+                        <p>Sim. Ele centraliza cadastros, itens, descontos, totais, status e PDF em um fluxo controlado.</p>
+                    </details>
+                    <details>
+                        <summary>Da para usar com vendedores diferentes?</summary>
+                        <p>Sim. Vendedor, supervisor, gerente e superadmin possuem permissoes adequadas para cada rotina.</p>
+                    </details>
+                    <details>
+                        <summary>O cliente recebe uma proposta em PDF?</summary>
+                        <p>Sim. O orcamento pode ser exportado em PDF para envio comercial com padrao profissional.</p>
+                    </details>
+                    <details>
+                        <summary>Serve para vender para mais de uma empresa?</summary>
+                        <p>Sim. A arquitetura multiempresa separa dados, usuarios e modulos por empresa cliente.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta" id="contato">
+            <div class="container cta-inner">
+                <div>
+                    <h2>Apresente o sistema com uma pagina e um portfolio prontos para venda.</h2>
+                    <p>Use esta landing junto com o PDF comercial para explicar funcionalidades, fluxo e beneficios na reuniao com seus clientes.</p>
+                </div>
+                <a class="button button-light" href="mailto:contato@seudominio.com.br?subject=Quero%20conhecer%20o%20sistema%20de%20orcamentos">Solicitar contato</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <span>Orcamentos - Sistema comercial multiempresa</span>
+            <span>Clientes, propostas, pedidos e comissoes.</span>
+        </div>
+    </footer>
+</body>
+</html>
