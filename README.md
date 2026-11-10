@@ -48,4 +48,4 @@ php artisan test
 
 A revisão de 10/11/2026 executou 113 testes, com 25 falhas, 1 erro e 483 asserções. Esta versão requer revisão. Entre os problemas registrados estão validações que exigem a tabela do item e uma chamada de `all()` sobre um array no histórico de preços.
 
-[Relatório de validação](https://github.com/mauriciogrto/portfolio/blob/main/docs/validacao-publicacao.md)
+[Relatório de validação](https://grxsistemas.com.br/portfolio/validacao)
